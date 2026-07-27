@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinSpect.Api", "FinSpect.Api\FinSpect.Api.csproj", "{C63887D0-EE3C-4949-9302-3055583F80CE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinSpect.Domain", "FinSpect.Domain\FinSpect.Domain.csproj", "{1F272784-2B33-44CB-BF01-185F07FD30D2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{C63887D0-EE3C-4949-9302-3055583F80CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C63887D0-EE3C-4949-9302-3055583F80CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C63887D0-EE3C-4949-9302-3055583F80CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F272784-2B33-44CB-BF01-185F07FD30D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F272784-2B33-44CB-BF01-185F07FD30D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F272784-2B33-44CB-BF01-185F07FD30D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F272784-2B33-44CB-BF01-185F07FD30D2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
