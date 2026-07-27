@@ -10,9 +10,7 @@ public class Program
         var builder = WebApplication.CreateBuilder(args);
         
         builder.Services.AddFinSpectServices();
-
-
-
+        
         var app = builder.CreateApplication();
         
         app.Run();
