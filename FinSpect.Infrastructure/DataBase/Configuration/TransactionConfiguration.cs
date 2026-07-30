@@ -8,7 +8,8 @@ public class TransactionConfiguration : IEntityTypeConfiguration<Transaction>
 {
     public void Configure(EntityTypeBuilder<Transaction> builder)
     { 
-        builder.ToTable("Transactions");
+        builder.ToTable("Transactions")
+            .HasIndex(e => e.Id);
         builder.HasKey(e => e.Id);
         builder.Property(e => e.Id)
             .HasColumnName("id")
@@ -30,6 +31,13 @@ public class TransactionConfiguration : IEntityTypeConfiguration<Transaction>
         builder.Property(e => e.CreatedAt)
             .HasColumnName("createdAt")
             .IsRequired()
-            .HasColumnType("datetime");
+            .HasColumnType("datetime")
+            .HasDefaultValueSql("(getdate())");
+
+        builder.Property(e => e.UpdatedAt)
+            .HasColumnName("updatedAt")
+            .IsRequired()
+            .HasColumnType("datetime")
+            .HasDefaultValue(DateTime.Now);
     }
 }
