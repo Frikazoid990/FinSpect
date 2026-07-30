@@ -1,11 +1,35 @@
+using FinSpect.Domain;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace FinSpect.Infrastructure.Configuration;
 
-public static class TransactionConfiguration
+public class TransactionConfiguration : IEntityTypeConfiguration<Transaction>
 {
-    public static void Configure(DbContextOptionsBuilder optionsBuilder)
-    {
+    public void Configure(EntityTypeBuilder<Transaction> builder)
+    { 
+        builder.ToTable("Transactions");
+        builder.HasKey(e => e.Id);
+        builder.Property(e => e.Id)
+            .HasColumnName("id")
+            .ValueGeneratedOnAdd(); // Генерация Guid на стороне БД или приложения
         
+        builder.Property(e => e.Currency)
+            .HasColumnName("currency")
+            .IsRequired();
+        
+        builder.Property(e => e.Amount)
+            .HasColumnName("amount")
+            .IsRequired()
+            .HasColumnType("decimal(18,2)");
+
+        builder.Property(e => e.Category)
+            .HasColumnName("category")
+            .IsRequired();
+
+        builder.Property(e => e.CreatedAt)
+            .HasColumnName("createdAt")
+            .IsRequired()
+            .HasColumnType("datetime");
     }
 }
