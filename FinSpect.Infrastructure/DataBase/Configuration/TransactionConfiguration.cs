@@ -10,13 +10,18 @@ public class TransactionConfiguration : IEntityTypeConfiguration<Transaction>
     { 
         builder.ToTable("Transactions")
             .HasIndex(e => e.Id);
+        
         builder.HasKey(e => e.Id);
         builder.Property(e => e.Id)
             .HasColumnName("id")
-            .ValueGeneratedOnAdd(); // Генерация Guid на стороне БД или приложения
-        
+            .ValueGeneratedOnAdd() // Генерация Guid на стороне БД или приложения
+            .HasColumnType("guid")
+            .HasConversion<Guid>()
+            .IsRequired();
+
         builder.Property(e => e.Currency)
             .HasColumnName("currency")
+            .HasConversion<byte>()
             .IsRequired();
         
         builder.Property(e => e.Amount)
@@ -26,18 +31,19 @@ public class TransactionConfiguration : IEntityTypeConfiguration<Transaction>
 
         builder.Property(e => e.Category)
             .HasColumnName("category")
+            .HasMaxLength(50)
             .IsRequired();
-
+        
         builder.Property(e => e.CreatedAt)
             .HasColumnName("createdAt")
             .IsRequired()
             .HasColumnType("datetime")
-            .HasDefaultValueSql("(getdate())");
+            .HasDefaultValueSql("(getdate())"); //TODO
 
         builder.Property(e => e.UpdatedAt)
             .HasColumnName("updatedAt")
             .IsRequired()
             .HasColumnType("datetime")
-            .HasDefaultValue(DateTime.Now);
+            .HasDefaultValue(DateTime.Now);//TODO
     }
 }

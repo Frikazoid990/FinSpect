@@ -5,14 +5,16 @@ namespace FinSpect.Api.Configuration;
 
 public static class ServiceCollectionExtensions
 {
-    public static IServiceCollection AddFinSpectServices(this IServiceCollection services)
+    public static IServiceCollection AddFinSpectServices(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddEndpointsApiExplorer();
         
-        //swagger
+        //
         services.AddSwaggerService();
-        //ApiVersioning 
+        //
         services.AddApiVersioning();
+        //
+        services.AddDbConnection(configuration);
         
         services.AddServices();
         services.AddControllers();

@@ -1,3 +1,4 @@
+name: FinSpect
 services:
   Dbpostgres:
     # 1. Выбираем образ для нашего контейнера 
