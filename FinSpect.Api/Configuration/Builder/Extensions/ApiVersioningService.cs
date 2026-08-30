@@ -1,6 +1,6 @@
 using Asp.Versioning;
 
-namespace FinSpect.Api.Configuration.Extensions;
+namespace FinSpect.Api.Configuration.Builder.Extensions;
 
 public static class ApiVersioningService
 {

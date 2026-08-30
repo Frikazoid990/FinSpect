@@ -1,20 +1,23 @@
+using FinSpect.Api.Configuration.Builder.Extensions;
 using FinSpect.Api.Configuration.DI;
-using FinSpect.Api.Configuration.Extensions;
 
-namespace FinSpect.Api.Configuration;
+namespace FinSpect.Api.Configuration.Builder;
 
 public static class ServiceCollectionExtensions
 {
-    public static IServiceCollection AddFinSpectServices(this IServiceCollection services)
+    public static IServiceCollection AddFinSpectServices(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddEndpointsApiExplorer();
         
-        //swagger
+        //
         services.AddSwaggerService();
-        //ApiVersioning 
+        //
         services.AddApiVersioning();
+        //
+        services.AddDbConnection(configuration);
         
         services.AddServices();
+        
         services.AddControllers();
         return services;
     }

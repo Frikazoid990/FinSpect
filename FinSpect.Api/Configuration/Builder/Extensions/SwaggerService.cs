@@ -1,6 +1,6 @@
-namespace FinSpect.Api.Configuration.Extensions;
+namespace FinSpect.Api.Configuration.Builder.Extensions;
 
-public static class SwaggerServiceExtansion
+public static class SwaggerServiceExtension
 {
     public static IServiceCollection AddSwaggerService(this IServiceCollection services)
     {
