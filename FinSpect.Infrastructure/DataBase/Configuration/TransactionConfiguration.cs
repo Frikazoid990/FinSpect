@@ -1,8 +1,8 @@
-using FinSpect.Domain;
+using FinSpect.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace FinSpect.Infrastructure.Configuration;
+namespace FinSpect.Infrastructure.DataBase.Configuration;
 
 public class TransactionConfiguration : IEntityTypeConfiguration<Transaction>
 {
@@ -33,17 +33,15 @@ public class TransactionConfiguration : IEntityTypeConfiguration<Transaction>
             .HasColumnName("category")
             .HasMaxLength(50)
             .IsRequired();
-        
+
         builder.Property(e => e.CreatedAt)
             .HasColumnName("createdAt")
             .IsRequired()
-            .HasColumnType("datetime")
-            .HasDefaultValueSql("(getdate())"); //TODO
+            .HasColumnType("datetime");
 
         builder.Property(e => e.UpdatedAt)
             .HasColumnName("updatedAt")
             .IsRequired()
-            .HasColumnType("datetime")
-            .HasDefaultValue(DateTime.Now);//TODO
+            .HasColumnType("datetime");
     }
 }

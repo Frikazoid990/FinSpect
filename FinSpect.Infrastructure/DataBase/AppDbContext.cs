@@ -1,9 +1,9 @@
-
-using FinSpect.Domain;
-using FinSpect.Infrastructure.Configuration;
+using FinSpect.Domain.Entities;
+using FinSpect.Domain.Entities.BaseEntities;
+using FinSpect.Infrastructure.DataBase.Configuration;
 using Microsoft.EntityFrameworkCore;
 
-namespace FinSpect.Infrastructure;
+namespace FinSpect.Infrastructure.DataBase;
 
 public class AppDbContext : DbContext
 {
@@ -16,5 +16,28 @@ public class AppDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         new TransactionConfiguration().Configure(modelBuilder.Entity<Transaction>());
+    }
+
+    public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+    {
+        ApplyAuditFields();
+        return SaveChangesAsync(true, cancellationToken);
+    }
+
+    private void ApplyAuditFields()
+    {
+        foreach (var entry in ChangeTracker.Entries<BaseEntity>())
+        {
+            switch (entry.State)
+            {
+                case EntityState.Added:
+                    entry.Entity.CreatedAt = DateTime.UtcNow;
+                    entry.Entity.UpdatedAt = DateTime.UtcNow;
+                    break;
+                case EntityState.Modified:
+                    entry.Entity.UpdatedAt = DateTime.UtcNow;
+                    break;
+            }
+        }
     }
 }

@@ -1,6 +1,7 @@
 using System.ComponentModel;
 using FinSpect.Api.Configuration;
 using FinSpect.Api.Configuration.App;
+using FinSpect.Api.Configuration.Builder;
 using FinSpect.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging.Configuration;
