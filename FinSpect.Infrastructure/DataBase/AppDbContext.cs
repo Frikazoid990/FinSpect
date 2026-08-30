@@ -12,16 +12,11 @@ public class AppDbContext : DbContext
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
     {
     }
-
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
-    {
-        new TransactionConfiguration().Configure(modelBuilder.Entity<Transaction>());
-    }
-
+    
     public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
     {
         ApplyAuditFields();
-        return SaveChangesAsync(true, cancellationToken);
+        return base.SaveChangesAsync(true, cancellationToken);
     }
 
     private void ApplyAuditFields()
