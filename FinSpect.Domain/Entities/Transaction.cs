@@ -20,5 +20,5 @@ public class Transaction : BaseEntity
     /// <summary>
     /// Валюта 
     /// </summary>
-    public Currency Currency { get; set; }
+    public byte Currency { get; set; }
 }

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace FinSpect.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class Migration202608301 : Migration
+    public partial class Migration20260109_1 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -22,7 +22,7 @@ namespace FinSpect.Infrastructure.Migrations
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     Amount = table.Column<decimal>(type: "numeric", nullable: false),
                     Category = table.Column<string>(type: "text", nullable: false),
-                    Currency = table.Column<int>(type: "integer", nullable: false),
+                    Currency = table.Column<byte>(type: "smallint", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     UpdatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },

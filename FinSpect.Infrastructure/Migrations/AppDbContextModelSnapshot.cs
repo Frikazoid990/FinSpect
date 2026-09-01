@@ -38,8 +38,8 @@ namespace FinSpect.Infrastructure.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<int>("Currency")
-                        .HasColumnType("integer");
+                    b.Property<byte>("Currency")
+                        .HasColumnType("smallint");
 
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");

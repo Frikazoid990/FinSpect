@@ -8,7 +8,7 @@ public static class ServiceCollectionExtensions
     public static IServiceCollection AddFinSpectServices(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddEndpointsApiExplorer();
-        
+        services.AddLogging();
         //
         services.AddSwaggerService();
         //

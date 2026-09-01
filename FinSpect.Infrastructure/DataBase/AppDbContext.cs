@@ -1,6 +1,5 @@
 using FinSpect.Domain.Entities;
 using FinSpect.Domain.Entities.BaseEntities;
-using FinSpect.Infrastructure.DataBase.Configuration;
 using Microsoft.EntityFrameworkCore;
 
 namespace FinSpect.Infrastructure.DataBase;

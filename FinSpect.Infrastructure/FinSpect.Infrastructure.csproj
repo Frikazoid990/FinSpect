@@ -20,5 +20,9 @@
     <ItemGroup>
       <ProjectReference Include="..\FinSpect.Domain\FinSpect.Domain.csproj" />
     </ItemGroup>
+    
+    <ItemGroup>
+      <Folder Include="DataBase\Configuration\" />
+    </ItemGroup>
 
 </Project>
