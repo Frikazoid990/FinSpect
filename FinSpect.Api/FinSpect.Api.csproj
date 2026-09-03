@@ -22,6 +22,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\FinSpect.Application\FinSpect.Application.csproj" />
       <ProjectReference Include="..\FinSpect.Infrastructure\FinSpect.Infrastructure.csproj" />
     </ItemGroup>
 

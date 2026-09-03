@@ -20,16 +20,17 @@ public class AppDbContext : DbContext
 
     private void ApplyAuditFields()
     {
+        var date = DateTime.UtcNow;
         foreach (var entry in ChangeTracker.Entries<BaseEntity>())
         {
             switch (entry.State)
             {
                 case EntityState.Added:
-                    entry.Entity.CreatedAt = DateTime.UtcNow;
-                    entry.Entity.UpdatedAt = DateTime.UtcNow;
+                    entry.Entity.CreatedAt = date;
+                    entry.Entity.UpdatedAt = date;
                     break;
                 case EntityState.Modified:
-                    entry.Entity.UpdatedAt = DateTime.UtcNow;
+                    entry.Entity.UpdatedAt = date;
                     break;
             }
         }

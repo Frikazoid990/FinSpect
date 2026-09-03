@@ -9,9 +9,12 @@ public static class ApiVersioningService
         services.AddApiVersioning(options =>
         {
             options.ReportApiVersions = true;
-            options.AssumeDefaultVersionWhenUnspecified = true;
-            options.DefaultApiVersion = new ApiVersion(1,0);
-        });
+            options.AssumeDefaultVersionWhenUnspecified = false;
+            options.DefaultApiVersion = new ApiVersion(1);
+            options.ApiVersionReader = ApiVersionReader.Combine(
+                new UrlSegmentApiVersionReader(),
+                new HeaderApiVersionReader("api-version"));
+        }).AddMvc();
         
         return  services;
     }
