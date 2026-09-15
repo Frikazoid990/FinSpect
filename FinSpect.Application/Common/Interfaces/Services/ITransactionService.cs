@@ -5,5 +5,5 @@ namespace FinSpect.Application.Common.Interfaces.Services;
 public interface ITransactionService
 {
     public Task CreateTransaction(TransactionDto transaction);
-    public Task<TransactionDto> GetTransaction(Guid id); 
+    public Task<List<TransactionDto>> GetAllTransaction(); 
 }

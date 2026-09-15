@@ -4,5 +4,5 @@ namespace FinSpect.Application.Common.Interfaces.Repository;
 
 public interface ITransactionRepository : IRepositoryBase<Transaction>
 {
-    public Task<List<Transaction>> GetAllTransactions();
+    public Task<IReadOnlyList<Transaction>> GetAllTransactions();
 }

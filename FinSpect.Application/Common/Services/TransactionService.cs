@@ -25,9 +25,6 @@ public class TransactionService(ITransactionRepository transactionRepository) : 
         {
             throw new ValidationException("Amount can't be negative");
         }
-
-        //if(Curreny) // todo
-      //  var  s = Enum.IsDefined(typeof(Currency), transaction.Currency);
         
         var entity = new Transaction
         {
@@ -36,11 +33,20 @@ public class TransactionService(ITransactionRepository transactionRepository) : 
             Category = transaction.Category,
             Currency = transaction.Currency,
         };
+        
         await transactionRepository.Add(entity);
     }
 
-    public Task<TransactionDto> GetTransaction(Guid id)
+    public async Task<List<TransactionDto>> GetAllTransaction()
     {
-        throw new NotImplementedException();
+        var transaction = await transactionRepository.GetAllTransactions();
+        return transaction.Select(x => new TransactionDto
+        {
+            Id = x.Id,
+            Amount = x.Amount,
+            Category = x.Category,
+            Currency = x.Currency,
+        })
+        .ToList();
     }
 }

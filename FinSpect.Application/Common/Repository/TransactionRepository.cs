@@ -14,10 +14,17 @@ public class TransactionRepository(AppDbContext context) : ITransactionRepositor
         await context.SaveChangesAsync();
     }
 
-    public async Task AddRange(IEnumerable<Transaction> entities)
+    public async Task AddRange(List<Transaction> entities)
     {
-       await context.BulkInsertAsync(entities);
+        var data = DateTime.UtcNow;
+
+        foreach (var entity in entities)
+        {
+            entity.CreatedAt = data;
+            entity.UpdatedAt = data;
+        }
         
+        await context.BulkInsertAsync(entities);
     }
 
     public async Task RemoveEntityById(Guid id)
@@ -27,16 +34,18 @@ public class TransactionRepository(AppDbContext context) : ITransactionRepositor
         await context.SaveChangesAsync();
     }
 
-    public async Task RemoveEntitysByIdsRange(IEnumerable<Guid> ids)
+    public async Task RemoveEntitysByIdsRange(List<Guid> ids)
     {
         var entitysList = await GetEntitysByIds(ids);
         context.Transactions.RemoveRange(entitysList);
         await context.SaveChangesAsync();
     }
 
-    public async Task<List<Transaction>> GetAllTransactions()
+    public async Task<IReadOnlyList<Transaction>> GetAllTransactions()
     {
-        return await context.Transactions.ToListAsync();
+        return await context.Transactions
+            .AsNoTracking()
+            .ToListAsync();
     }
 
     public async Task Update(Transaction entity)
@@ -45,7 +54,7 @@ public class TransactionRepository(AppDbContext context) : ITransactionRepositor
         await context.SaveChangesAsync();
     }
 
-    public async Task UpdateRange(IEnumerable<Transaction> entities)
+    public async Task UpdateRange(List<Transaction> entities)
     {
         context.Transactions.UpdateRange(entities);
         await context.SaveChangesAsync();
@@ -57,7 +66,7 @@ public class TransactionRepository(AppDbContext context) : ITransactionRepositor
             .FirstAsync(x => x.Id == id);
     }
 
-    public async Task<IEnumerable<Transaction>> GetEntitysByIds(IEnumerable<Guid> ids)
+    public async Task<IEnumerable<Transaction>> GetEntitysByIds(List<Guid> ids)
     {
         return await context.Transactions
             .Where(x => ids.Contains(x.Id))

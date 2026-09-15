@@ -21,8 +21,14 @@ public class TransactionsController(ITransactionService transactionService) : Co
         }
         catch (Exception ex)
         {
-            throw ex;
+            return BadRequest(ex.Message);
         }
     }
-    
+
+    [HttpGet]
+    public async Task<IActionResult> GetAllTransactions()
+    {
+      var transactions = await transactionService.GetAllTransaction();
+      return Ok(transactions);
+    }
 }

@@ -31,7 +31,6 @@ public static class WebApplicationExtensions
         {
             var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
             logger.LogInformation("Migrating database associated with context {DbContextName}", dbContext);
-            //узнать версию мииграции с текущей в прилоежнии и возможность не вызывать это
             await dbContext.Database.MigrateAsync(CancellationToken.None);
         }
         catch (Exception ex)

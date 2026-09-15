@@ -4,7 +4,7 @@ using FluentValidation;
 namespace FinSpect.Application.Common.Validator;
 
 public class TransactionValidator : AbstractValidator<Transaction>
-{
+{ 
     public TransactionValidator()
     {
         RuleFor(t => t)

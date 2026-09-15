@@ -9,7 +9,9 @@ public static class Services
 {
     public static IServiceCollection AddServices(this IServiceCollection services)
     {
+        //Repository
         services.AddScoped<ITransactionRepository, TransactionRepository>();
+        //Services
         services.AddScoped<ITransactionService, TransactionService >();
         return services;
     }

@@ -15,8 +15,8 @@ public class ExceptionFilter : IExceptionFilter, IAsyncExceptionFilter
             {
                 StatusCode = StatusCodes.Status422UnprocessableEntity
             };
+            context.ExceptionHandled = true;
         }
-        context.ExceptionHandled = true;
     }
     
     public Task OnExceptionAsync(ExceptionContext context)
@@ -27,8 +27,9 @@ public class ExceptionFilter : IExceptionFilter, IAsyncExceptionFilter
             {
                 StatusCode = StatusCodes.Status422UnprocessableEntity
             };
+            context.ExceptionHandled = true;
         }
-        context.ExceptionHandled = true;
+        
         return Task.CompletedTask;
     }
 }
